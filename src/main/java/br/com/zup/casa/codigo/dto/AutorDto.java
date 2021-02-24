@@ -5,18 +5,19 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import br.com.zup.casa.codigo.entity.Autor;
+import br.com.zup.casa.codigo.validation.UniqueValue;
 
 public class AutorDto {
-	
 
-	@NotBlank(message = "Campo nome não pode ser em branco")
+	@NotBlank
 	private String nome;
 
-	@NotBlank(message = "Campo email não pode ser em branco")
+	@NotBlank
 	@Email
+	@UniqueValue(domainClass = Autor.class, fieldName = "email")
 	private String email;
 
-	@NotBlank(message = "Campo descrição não pode ser em branco")
+	@NotBlank
 	@Size(max = 400)
 	private String descricao;
 

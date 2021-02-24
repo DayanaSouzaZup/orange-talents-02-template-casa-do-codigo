@@ -43,7 +43,6 @@ public class Autor {
 			@NotBlank @Email String email,
 			@NotBlank @Size(max = 400) String descricao, 
 			LocalDateTime hora) {
-		super();
 		Id = id;
 		this.nome = nome;
 		this.email = email;
