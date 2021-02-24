@@ -9,14 +9,14 @@ import br.com.zup.casa.codigo.entity.Autor;
 public class AutorDto {
 	
 
-	@NotBlank
+	@NotBlank(message = "Campo nome não pode ser em branco")
 	private String nome;
 
-	@NotBlank
+	@NotBlank(message = "Campo email não pode ser em branco")
 	@Email
 	private String email;
 
-	@NotBlank
+	@NotBlank(message = "Campo descrição não pode ser em branco")
 	@Size(max = 400)
 	private String descricao;
 
@@ -32,6 +32,11 @@ public class AutorDto {
 	public Autor toModel() {
 		
 		return new Autor(null, this.nome, this.email, this.descricao, null);
+	}
+
+	public String getEmail() {
+		
+		return this.email;
 	}
 	
 

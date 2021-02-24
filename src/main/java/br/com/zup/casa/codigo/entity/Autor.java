@@ -32,6 +32,11 @@ public class Autor {
 
 	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm")
 	private LocalDateTime hora = LocalDateTime.now();
+	
+	@Deprecated
+	public Autor() {
+			
+	}
 
 	public Autor(Long id, 
 			@NotBlank String nome, 
