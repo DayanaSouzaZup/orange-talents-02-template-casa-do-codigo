@@ -43,14 +43,12 @@ public class Livro {
 	@Future
 	private LocalDate dataPublicacao;
 
-	
-
 	@ManyToOne
 	private Categoria categoria;
 
 	@ManyToOne
 	private Autor autor;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -90,7 +88,7 @@ public class Livro {
 	public Autor getAutor() {
 		return autor;
 	}
-	
+
 	public void setDataPublicacao(LocalDate dataPublicacao) {
 		this.dataPublicacao = dataPublicacao;
 	}
@@ -99,11 +97,11 @@ public class Livro {
 	public Livro() {
 
 	}
-	
+
 	public Livro(@NotBlank String titulo2, @NotBlank @Size(max = 500) String resumo2, @NotBlank String isbn2,
 			@NotBlank String sumario2, @NotNull @Min(20) BigDecimal preco2, @Min(100) Integer numeroPaginas2,
 			@Future @NotNull LocalDate dataPublicacao2, @NotNull Autor autor2, @NotNull Categoria categoria2) {
-		
+
 	}
 
 	@Override
