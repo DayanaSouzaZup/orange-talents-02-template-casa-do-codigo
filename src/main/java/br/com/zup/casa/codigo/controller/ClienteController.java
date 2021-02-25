@@ -10,24 +10,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.zup.casa.codigo.dto.LivroDto;
-import br.com.zup.casa.codigo.entity.Livro;
+import br.com.zup.casa.codigo.dto.ClienteDto;
+import br.com.zup.casa.codigo.entity.Cliente;
 
 @RestController
-@RequestMapping("/livros")
-public class LivroController {
-
+@RequestMapping("/clientes")
+public class ClienteController {
+	
 	@PersistenceContext
 	private EntityManager manager;
-
+	
 	@PostMapping
 	@Transactional
-	public String cadastraLivro(@RequestBody @Valid LivroDto livroDto) {
+	public String cadastraCliente (@RequestBody @Valid ClienteDto clienteDto) {
 		
-		Livro novoLivro = livroDto.toModel(manager);
-		manager.persist(novoLivro);
-		return novoLivro.toString();
-
+		Cliente novoCliente = clienteDto.toModel(manager);
+		manager.persist(novoCliente);
+		return clienteDto.toString();
 	}
 
 }

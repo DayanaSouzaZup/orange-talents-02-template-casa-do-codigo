@@ -10,6 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
 
@@ -42,16 +43,47 @@ public class LivroDto {
 
 	@Future
 	@NotNull
-	@JsonFormat(pattern = "dd-MM-yyyy", shape = Shape.STRING)
+	@JsonFormat(pattern = "dd/MM/yyyy", shape = Shape.STRING)
 	private LocalDate dataPublicacao;
 
 	@NotNull
 	@ExistsId(domainClass = Autor.class, fieldName = "id")
 	private Long idAutor;
 
-	@ExistsId(domainClass = Autor.class, fieldName = "id")
+	@ExistsId(domainClass = Categoria.class, fieldName = "id")
 	@NotNull
 	private Long idCategoria;
+
+	@JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
+	public LivroDto(@NotBlank String titulo, @NotBlank @Size(max = 500) String resumo, @NotBlank String isbn,
+			@NotBlank String sumario, @NotNull @Min(20) BigDecimal preco, @Min(100) Integer numeroPaginas,
+			@Future @NotNull LocalDate dataPublicacao, @NotNull Long idAutor, @NotNull Long idCategoria) {
+		super();
+		this.titulo = titulo;
+		this.resumo = resumo;
+		this.isbn = isbn;
+		this.sumario = sumario;
+		this.preco = preco;
+		this.numeroPaginas = numeroPaginas;
+		this.dataPublicacao = dataPublicacao;
+		this.idAutor = idAutor;
+		this.idCategoria = idCategoria;
+
+	}
+
+	public Livro toModel(EntityManager manager) {
+		@NotNull
+		Autor autor = manager.find(Autor.class, this.idAutor);
+		@NotNull
+		Categoria categoria = manager.find(Categoria.class, this.idCategoria);
+
+		return new Livro(titulo, resumo, isbn, sumario, preco, numeroPaginas, dataPublicacao, categoria, autor);
+
+	}
+
+	public LivroDto() {
+
+	}
 
 	public void setDataPublicacao(LocalDate dataPublicacao) {
 		this.dataPublicacao = dataPublicacao;
@@ -91,31 +123,5 @@ public class LivroDto {
 
 	public Long getIdCategoria() {
 		return idCategoria;
-	}
-
-	public LivroDto(@NotBlank String titulo, @NotBlank @Size(max = 500) String resumo, @NotBlank String isbn,
-			@NotBlank String sumario, @NotNull @Min(20) BigDecimal preco, @Min(100) Integer numeroPaginas,
-			@Future @NotNull LocalDate dataPublicacao, @NotNull Long idAutor, @NotNull Long idCategoria) {
-		super();
-		this.titulo = titulo;
-		this.resumo = resumo;
-		this.isbn = isbn;
-		this.sumario = sumario;
-		this.preco = preco;
-		this.numeroPaginas = numeroPaginas;
-		this.dataPublicacao = dataPublicacao;
-		this.idAutor = idAutor;
-		this.idCategoria = idCategoria;
-
-	}
-
-	public Livro toModel(EntityManager manager) {
-		@NotNull
-		Autor autor = manager.find(Autor.class, this.idAutor);
-		@NotNull
-		Categoria categoria = manager.find(Categoria.class, this.idCategoria);
-
-		return new Livro(titulo, resumo, isbn, sumario, preco, numeroPaginas, dataPublicacao, autor, categoria);
-
 	}
 }

@@ -49,6 +49,35 @@ public class Livro {
 	@ManyToOne
 	private Autor autor;
 
+	
+
+	@Deprecated
+	public Livro() {
+
+	}
+
+	public Livro(@NotBlank String titulo, @NotBlank @Size(max = 500) String resumo, @NotBlank String isbn,
+			@NotBlank String sumario, @Min(20) BigDecimal preco, @Min(100) Integer numeroPaginas,
+			@Future LocalDate dataPublicacao, Categoria categoria, Autor autor) {
+		super();
+		this.titulo = titulo;
+		this.resumo = resumo;
+		this.isbn = isbn;
+		this.sumario = sumario;
+		this.preco = preco;
+		this.numeroPaginas = numeroPaginas;
+		this.dataPublicacao = dataPublicacao;
+		this.categoria = categoria;
+		this.autor = autor;
+	}
+
+	@Override
+	public String toString() {
+		return "Livro [id=" + id + ", titulo=" + titulo + ", resumo=" + resumo + ", isbn=" + isbn + ", sumario="
+				+ sumario + ", preco=" + preco + ", numeroPaginas=" + numeroPaginas + ", dataPublicacao="
+				+ dataPublicacao + ", categoria=" + categoria + ", autor=" + autor + "]";
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -91,24 +120,6 @@ public class Livro {
 
 	public void setDataPublicacao(LocalDate dataPublicacao) {
 		this.dataPublicacao = dataPublicacao;
-	}
-
-	@Deprecated
-	public Livro() {
-
-	}
-
-	public Livro(@NotBlank String titulo2, @NotBlank @Size(max = 500) String resumo2, @NotBlank String isbn2,
-			@NotBlank String sumario2, @NotNull @Min(20) BigDecimal preco2, @Min(100) Integer numeroPaginas2,
-			@Future @NotNull LocalDate dataPublicacao2, @NotNull Autor autor2, @NotNull Categoria categoria2) {
-
-	}
-
-	@Override
-	public String toString() {
-		return "Livro [id=" + id + ", titulo=" + titulo + ", resumo=" + resumo + ", isbn=" + isbn + ", sumario="
-				+ sumario + ", preco=" + preco + ", numeroPaginas=" + numeroPaginas + ", dataPublicacao="
-				+ dataPublicacao + ", categoria=" + categoria + ", autor=" + autor + "]";
 	}
 
 }
