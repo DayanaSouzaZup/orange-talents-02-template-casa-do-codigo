@@ -7,24 +7,26 @@ import javax.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.zup.casa.codigo.dto.CategoriaDto;
-import br.com.zup.casa.codigo.entity.Categoria;
+import br.com.zup.casa.codigo.dto.LivroDto;
+import br.com.zup.casa.codigo.entity.Livro;
 
 @RestController
-public class CategoriaController {
-	
+@RequestMapping("/livros")
+public class LivroController {
+
 	@PersistenceContext
 	private EntityManager manager;
-	
-	@PostMapping("/categorias")
-	@Transactional
-	public String cadastrarCategoria (@RequestBody @Valid CategoriaDto categoriaDto) {
-		
-		Categoria categoria = categoriaDto.toModel();
-		manager.persist(categoria);
-		return categoria.toString();
-	}
-}
 
+	@PostMapping
+	@Transactional
+	public String cadastraLivro(@RequestBody @Valid LivroDto livroDto) {
+		Livro novoLivro = livroDto.toModel(manager);
+		manager.persist(novoLivro);
+		return novoLivro.toString();
+
+	}
+
+}

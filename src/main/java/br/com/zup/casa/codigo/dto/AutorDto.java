@@ -19,11 +19,22 @@ public class AutorDto {
 
 	@NotBlank
 	@Size(max = 400)
+
 	private String descricao;
 
-	public AutorDto(@NotBlank String nome, 
-			@NotBlank @Email String email, 
-			@NotBlank @Size(max = 400) String descricao) {
+	public String getNome() {
+		return nome;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public AutorDto(@NotBlank String nome, @NotBlank @Email String email, @NotBlank @Size(max = 400) String descricao) {
 		super();
 		this.nome = nome;
 		this.email = email;
@@ -31,14 +42,8 @@ public class AutorDto {
 	}
 
 	public Autor toModel() {
-		
-		return new Autor(null, this.nome, this.email, this.descricao, null);
-	}
 
-	public String getEmail() {
-		
-		return this.email;
+		return null;
 	}
-	
 
 }
