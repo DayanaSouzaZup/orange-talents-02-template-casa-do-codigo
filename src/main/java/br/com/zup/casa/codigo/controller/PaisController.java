@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.zup.casa.codigo.dto.PaisDto;
+import br.com.zup.casa.codigo.entity.Autor;
 import br.com.zup.casa.codigo.entity.Pais;
 
 @RestController
@@ -23,9 +24,10 @@ public class PaisController {
 
 	public String cadastraPais(@RequestBody @Valid PaisDto paisDto) {
 
-		Pais paisCadastrado = new Pais(null, paisDto.getNome());
+		Pais paisCadastrado = paisDto.toModel();
 		manager.persist(paisCadastrado);
 		return paisCadastrado.toString();
+
 	}
 
 }

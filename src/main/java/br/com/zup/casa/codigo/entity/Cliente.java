@@ -49,15 +49,18 @@ public class Cliente {
 	private String cep;
 
 	@ManyToOne
-	private Pais paisCadastrado;
+	private Pais pais;
 
 	@ManyToOne
-	private Estado estadoCadastrado;
+	private Estado estado;
+
+	public Cliente() {
+
+	}
 
 	public Cliente(@NotBlank @Email String email, @NotBlank String nome, @NotBlank String sobrenome,
 			@CPF @CNPJ @NotBlank String documento, @NotBlank String endereco, @NotBlank String complemento,
-			@NotBlank String cidade, @NotBlank String telefone, @NotBlank String cep, Pais paisCadastrado,
-			Estado estadoCadastrado) {
+			@NotBlank String cidade, @NotBlank String telefone, @NotBlank String cep, Pais pais, Estado estado) {
 		super();
 		this.email = email;
 		this.nome = nome;
@@ -68,20 +71,20 @@ public class Cliente {
 		this.cidade = cidade;
 		this.telefone = telefone;
 		this.cep = cep;
-		this.paisCadastrado = paisCadastrado;
-		this.estadoCadastrado = estadoCadastrado;
+		this.pais = pais;
+		this.estado = estado;
 	}
 
-	public Cliente() {
-
-	}
-
+	
 	@Override
 	public String toString() {
 		return "Cliente [id=" + id + ", email=" + email + ", nome=" + nome + ", sobrenome=" + sobrenome + ", documento="
 				+ documento + ", endereco=" + endereco + ", complemento=" + complemento + ", cidade=" + cidade
-				+ ", telefone=" + telefone + ", cep=" + cep + ", paisCadastrado=" + paisCadastrado
-				+ ", estadoCadastrado=" + estadoCadastrado + "]";
+				+ ", telefone=" + telefone + ", cep=" + cep + ", pais=" + pais + ", estado=" + estado + "]";
+	}
+
+	public Long getId() {
+		return id;
 	}
 
 	public String getEmail() {
@@ -118,6 +121,14 @@ public class Cliente {
 
 	public String getCep() {
 		return cep;
+	}
+
+	public Pais getPais() {
+		return pais;
+	}
+
+	public Estado getEstado() {
+		return estado;
 	}
 
 }

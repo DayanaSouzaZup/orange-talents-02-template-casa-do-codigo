@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
@@ -20,22 +21,35 @@ public class Estado {
 	private String nome;
 
 	@ManyToOne
-	@NotNull
-	@Valid
 	private Pais pais;
+
+	@Override
+	public String toString() {
+		return "Estado [id=" + id + ", nome=" + nome + ", pais=" + pais + "]";
+	}
+
+	public Estado(Long id, @NotNull String nome, Pais pais) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.pais = pais;
+	}
+
+	@Deprecated
+	public Estado() {
+
+	}
 
 	public String getNome() {
 		return nome;
 	}
 
-	public Estado(@NotBlank String nome, @NotNull @Valid Pais pais) {
-		super();
-		this.nome = nome;
+	public Long getId() {
+		return id;
 	}
 
-	@Override
-	public String toString() {
-		return "Estado [id=" + id + ", nome=" + nome + ", pais=" + pais + "]";
+	public Pais getPais() {
+		return pais;
 	}
 
 }

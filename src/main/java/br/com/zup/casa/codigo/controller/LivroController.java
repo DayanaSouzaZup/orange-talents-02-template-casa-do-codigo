@@ -26,6 +26,7 @@ public class LivroController {
 		
 		Livro novoLivro = livroDto.toModel(manager);
 		manager.persist(novoLivro);
+		
 		return novoLivro.toString();
 
 	}

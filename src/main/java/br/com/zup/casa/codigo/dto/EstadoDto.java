@@ -1,6 +1,7 @@
 package br.com.zup.casa.codigo.dto;
 
 import javax.persistence.EntityManager;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import br.com.zup.casa.codigo.entity.Estado;
@@ -42,7 +43,10 @@ public class EstadoDto {
 		@NotNull
 		Pais pais = manager.find(Pais.class, this.idPais);
 
-		return new Estado(nome, manager.find(Pais.class, idPais));
+		return new Estado(null, nome, pais);
 	}
 
+	public EstadoDto() {
+		
+	}
 }

@@ -26,7 +26,8 @@ public class ClienteController {
 		
 		Cliente novoCliente = clienteDto.toModel(manager);
 		manager.persist(novoCliente);
-		return clienteDto.toString();
+		
+		return novoCliente.toString();
 	}
 
 }

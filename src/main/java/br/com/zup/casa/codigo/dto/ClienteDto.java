@@ -15,14 +15,14 @@ import br.com.zup.casa.codigo.validation.ExistsId;
 
 public class ClienteDto {
 
-	@NotNull
+	@NotBlank
 	@Email
 	private String email;
 
-	@NotNull
+	@NotBlank
 	private String nome;
 
-	@NotNull
+	@NotBlank
 	private String sobrenome;
 
 	@CPF
@@ -53,7 +53,7 @@ public class ClienteDto {
 	@ExistsId(domainClass = Estado.class, fieldName = "id")
 	private Long idEstado;
 
-	public ClienteDto(@NotNull @Email String email, @NotNull String nome, String sobrenome,
+	public ClienteDto(@NotBlank @Email String email, @NotBlank String nome, @NotBlank String sobrenome,
 			@CPF @CNPJ @NotBlank String documento, @NotBlank String endereco, @NotBlank String complemento,
 			@NotBlank String cidade, @NotBlank String telefone, @NotBlank String cep, @NotNull Long idPais,
 			@NotNull Long idEstado) {
@@ -93,5 +93,48 @@ public class ClienteDto {
 				+ telefone + ", cep=" + cep + ", idPais=" + idPais + ", idEstado=" + idEstado + "]";
 	}
 
-	
+	public String getEmail() {
+		return email;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public String getSobrenome() {
+		return sobrenome;
+	}
+
+	public String getDocumento() {
+		return documento;
+	}
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public Long getIdPais() {
+		return idPais;
+	}
+
+	public Long getIdEstado() {
+		return idEstado;
+	}
+
 }

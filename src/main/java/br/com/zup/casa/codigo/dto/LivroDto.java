@@ -50,8 +50,8 @@ public class LivroDto {
 	@ExistsId(domainClass = Autor.class, fieldName = "id")
 	private Long idAutor;
 
-	@ExistsId(domainClass = Categoria.class, fieldName = "id")
 	@NotNull
+	@ExistsId(domainClass = Categoria.class, fieldName = "id")
 	private Long idCategoria;
 
 	@JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
