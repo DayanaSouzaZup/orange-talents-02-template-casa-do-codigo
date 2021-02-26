@@ -11,6 +11,7 @@ import org.hibernate.validator.constraints.br.CPF;
 import br.com.zup.casa.codigo.entity.Cliente;
 import br.com.zup.casa.codigo.entity.Estado;
 import br.com.zup.casa.codigo.entity.Pais;
+import br.com.zup.casa.codigo.validation.CpfCnpj;
 import br.com.zup.casa.codigo.validation.ExistsId;
 
 public class ClienteDto {
@@ -25,8 +26,7 @@ public class ClienteDto {
 	@NotBlank
 	private String sobrenome;
 
-	@CPF
-	@CNPJ
+	@CpfCnpj
 	@NotBlank
 	private String documento;
 

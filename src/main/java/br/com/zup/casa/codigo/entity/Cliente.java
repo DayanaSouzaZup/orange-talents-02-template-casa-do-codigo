@@ -11,6 +11,8 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
 
+import br.com.zup.casa.codigo.validation.CpfCnpj;
+
 @Entity
 public class Cliente {
 
@@ -28,8 +30,7 @@ public class Cliente {
 	@NotBlank
 	private String sobrenome;
 
-	@CPF
-	@CNPJ
+	@CpfCnpj
 	@NotBlank
 	private String documento;
 
